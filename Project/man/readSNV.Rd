@@ -4,14 +4,14 @@
 \alias{readSNV}
 \title{readSNV}
 \usage{
-readSNV(path)
+readSNV(matrixData)
 }
 \arguments{
-\item{path}{The path to the raw SNV data}
+\item{matrix}{The path to the raw SNV data}
 }
 \value{
 The Seurat object representing the data
 }
 \description{
-This function takes one argument, which is the path to the raw SNV data. The function returns a SEURAT object from the data, which is simply the matrix processed into a format friendly to R.
+This function takes one argument, which is the raw SNV data. The function returns a SEURAT object from the data, which is simply the matrix processed into a format friendly to R.
 }
