@@ -71,6 +71,11 @@ To create a UMAP and gene by nuclei plot of the SNV data, simply pass the Seurat
 
 ```{r}
 
+#if (!require("BiocManager", quietly = TRUE))
+    #install.packages("BiocManager")
+#BiocManager::install("dittoSeq")
+#install.packages("sctransform")
 plots(snv_data)
+
 
 ```
