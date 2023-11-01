@@ -1,0 +1,76 @@
+---
+title: "FinalProjectVignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FinalProjectVignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Project)
+
+```
+
+
+**Description**
+
+The SNVProcessing package provides a simple and efficient way to read single nucleotide variant (SNV) data into R for analysis. The package also includes a number of functions for performing quality control and visualization of SNV data.
+
+**Reading SNV data**
+
+The readSNV function takes the path to the raw SNV data as its only argument and returns a Seurat object. The Seurat object is a data structure that is specifically designed for the analysis of single-cell RNA-sequencing (scRNA-seq) data.
+
+To read SNV data using the readSNV function, simply provide the path to the data as an argument to the function. For example, the following code would read the SNV data from the file dat:
+```{r}
+
+snv_data <- readSNV(PBSNL)
+snv_data
+
+```
+
+**Quality control**
+
+The Seur.QC function performs a number of quality control checks on the SNV data, including:
+
+-Removing cells with a high percentage of mitochondrial reads
+-Removing cells with a low number of expressed genes
+-Calculating the log10 genes per UMI and log10 UMI for each cell
+
+The Seur.QC function also adds the following metadata to the Seurat object:
+
+-mitoRatio: The percentage of mitochondrial reads in each cell
+-log10GenesPerUMI: The log10 genes per UMI for each cell
+-log10_nUMI: The log10 UMI for each cell
+-condition: The condition of the cell (e.g., control, treated)
+-tissue: The tissue from which the cell was isolated
+-treatment: The treatment that the cell was given (e.g., PBS, drug)
+-nGene: The number of expressed genes in each cell
+-cpn: The average counts per gene for each cell
+
+It is important to note that the Seur.QC function is included within the next function "plots", but on its own it runs as following:
+
+```{r}
+
+processedObj <- Seur.QC(snv_data)
+
+```
+
+**Visualization**
+
+The plots function creates a UMAP and gene by nuclei plot of the SNV data. The UMAP plot is a dimensionality reduction technique that is commonly used to visualize scRNA-seq data. The gene by nuclei plot shows the expression of a selected gene in each cell.
+
+To create a UMAP and gene by nuclei plot of the SNV data, simply pass the Seurat object to the plots function. For example, the following code would create a UMAP and gene by nuclei plot of the SNV data stored in the object snv_data:
+
+```{r}
+
+plots(snv_data)
+
+```
